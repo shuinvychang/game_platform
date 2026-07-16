@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: game_platform
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/game_platform?serverTimezone=Asia/Taipei&characterEncoding=utf-8
+    username: (your_username)
+    password: (your_password)
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: (your_email@gmail.com)
+    password: (your_mail_application_password)
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+jwt:
+  secret-key: (your_secret_key) # Must 32 characters
+  valid-seconds: 600 # 10 mins
