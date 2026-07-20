@@ -5,12 +5,12 @@ import com.shuinvy.game_platform.dao.TypeMappingDao;
 import com.shuinvy.game_platform.model.TypeMapping;
 import com.shuinvy.game_platform.service.TypeMappingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class TypeMappingServiceImpl implements TypeMappingService {
 
     @Autowired

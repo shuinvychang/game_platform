@@ -10,11 +10,11 @@ import com.shuinvy.game_platform.model.MemberInfo;
 import com.shuinvy.game_platform.model.PaymentLog;
 import com.shuinvy.game_platform.service.PaymentLogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class PaymentLogServiceImpl implements PaymentLogService {
 
     @Autowired

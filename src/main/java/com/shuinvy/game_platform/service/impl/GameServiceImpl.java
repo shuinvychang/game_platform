@@ -12,12 +12,12 @@ import com.shuinvy.game_platform.model.GameType;
 import com.shuinvy.game_platform.model.TypeMapping;
 import com.shuinvy.game_platform.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class GameServiceImpl implements GameService {
 
     @Autowired

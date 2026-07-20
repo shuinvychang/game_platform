@@ -10,14 +10,14 @@ import com.shuinvy.game_platform.model.Role;
 import com.shuinvy.game_platform.model.RolePermission;
 import com.shuinvy.game_platform.service.RolePermitService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Service
 public class RolePermitServiceImpl implements RolePermitService {
 
     @Autowired

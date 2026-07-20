@@ -5,11 +5,11 @@ import com.shuinvy.game_platform.dto.PictureRequest;
 import com.shuinvy.game_platform.model.Picture;
 import com.shuinvy.game_platform.service.PictureService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class PictureServiceImpl implements PictureService {
 
     @Autowired
