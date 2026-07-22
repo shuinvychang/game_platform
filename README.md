@@ -303,12 +303,12 @@ Sensitive configurations should be provided through environment variables or ext
 docker run -d \
 --name game-platform \
 -p 8080:8080 \
-shuinvy/game-platform:0.0.1 \
 -e DB_USERNAME=<db-username> \
 -e DB_PASSWORD=<db-password> \
---spring.mail.username=<your-email@gmail.com> \
 -e EMAIL_PASSWORD=<your-email-password> \
--e JWT_SECRET_KEY=<your-secret-key>
+-e JWT_SECRET_KEY=<your-secret-key> \
+shuinvy/game-platform:0.0.3 \
+--spring.mail.username=<your-email@gmail.com>
 ```
 
 ## Future Improvements
