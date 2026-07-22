@@ -288,6 +288,29 @@ Notification API
 
 ![Login API](docs/images/rbac_er_diagram.png)
 
+## Docker Run
+
+Default:
+```bash
+docker run -p 8080:8080 shuinvy/game-platform:0.0.1
+```
+
+Override settings:
+
+Sensitive configurations should be provided through environment variables or external configuration files in production environments.
+
+```bash
+docker run -d \
+--name game-platform \
+-p 8080:8080 \
+shuinvy/game-platform:0.0.1 \
+-e DB_USERNAME=<db-username> \
+-e DB_PASSWORD=<db-password> \
+--spring.mail.username=<your-email@gmail.com> \
+-e EMAIL_PASSWORD=<your-email-password> \
+-e JWT_SECRET_KEY=<your-secret-key>
+```
+
 ## Future Improvements
 - Backend Permission Authorization
   - Integrate Spring Security authorization mechanism
@@ -303,7 +326,10 @@ Notification API
 - Reorganize the directory structure
   - Function based first, then MVC
   - Such as: member/controller/, member/service
-- Docker Container
+- Container Deployment Enhancement
+  - Docker Compose deployment
+  - Nginx reverse proxy configuration
+  - HTTPS deployment
 - CI/CD Pipeline
 - Unit Test / Integration Test
 - API Rate Limiting
