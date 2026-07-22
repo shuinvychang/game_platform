@@ -6,6 +6,7 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,6 +14,12 @@ import java.util.List;
 
 @Configuration
 public class SwaggerConfig {
+
+    @Value("${swagger.server-url}")
+    private String serverUrl;
+
+    @Value("${swagger.server-description}")
+    private String serverDescription;
 
     @Bean
     public OpenAPI openAPI() {
@@ -34,8 +41,8 @@ public class SwaggerConfig {
                                 .bearerFormat("JWT"));
 
         var server = new Server()
-                .url("https://api.gameplatform.local")
-                .description("Development Server");
+                .url(serverUrl)
+                .description(serverDescription);
 
         return new OpenAPI()
                 .info(info)
