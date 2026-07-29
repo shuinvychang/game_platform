@@ -26,5 +26,5 @@ jwt:
   valid-seconds: 600 # 10 mins
 
 swagger:
-  server-url: http://localhost:8080
-  server-description: Local Server
+  server-url: ${SWAGGER_SERVER_URL:http://localhost:8080}
+  server-description: ${SWAGGER_SERVER_DESCRIPTION:Local Server}

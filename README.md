@@ -307,7 +307,9 @@ docker run -d \
 -e DB_PASSWORD=<db-password> \
 -e EMAIL_PASSWORD=<your-email-password> \
 -e JWT_SECRET_KEY=<your-secret-key> \
-shuinvy/game-platform:0.0.3 \
+-e SWAGGER_SERVER_URL=<swagger-server-url> \
+-e SWAGGER_SERVER_DESCRIPTION=<swagger-server-description> \
+shuinvy/game-platform:0.0.4 \
 --spring.mail.username=<your-email@gmail.com>
 ```
 
