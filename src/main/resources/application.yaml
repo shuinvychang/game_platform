@@ -25,6 +25,9 @@ jwt:
   secret-key: ${JWT_SECRET_KEY} # Must 32 characters
   valid-seconds: 600 # 10 mins
 
+server:
+  forward-headers-strategy: framework
+
 swagger:
   server-url: ${SWAGGER_SERVER_URL:http://localhost:8080}
   server-description: ${SWAGGER_SERVER_DESCRIPTION:Local Server}
