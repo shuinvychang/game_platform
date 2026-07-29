@@ -1,0 +1,40 @@
+services:
+  backend: # Service name
+    container_name: game_platform_api
+    image: shuinvy/game-platform:${IMAGE_TAG}
+    environment:
+      DB_URL: ${DB_URL}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      SWAGGER_SERVER_URL: ${SWAGGER_SERVER_URL}
+      SWAGGER_SERVER_DESCRIPTION: ${SWAGGER_SERVER_DESCRIPTION}
+    command:
+      - --spring.mail.username=${EMAIL_USERNAME}
+    restart: always # restart when rebooting
+  nginx_proxy:
+    container_name: nginx
+    image: nginx:latest
+    volumes: # mount directory to the container
+      - ./nginx/gameplatform.conf:/etc/nginx/conf.d/gameplatform.conf
+      - ./nginx/cert:/etc/nginx/ssl/certs
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    depends_on: # Will wait for backend container up(but haven't ready)
+      - backend
+  mysql:
+    container_name: mysql
+    image: mysql:8.4
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: game_platform
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/game_platform.sql:/docker-entrypoint-initdb.d/game_platform.sql
+
+volumes:
+  mysql_data:

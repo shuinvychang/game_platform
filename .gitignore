@@ -46,3 +46,7 @@ application-prod.yaml
 
 ### Project Files ###
 upload/
+
+# nginx SSL certificates
+nginx/cert/*.crt
+nginx/cert/*.key

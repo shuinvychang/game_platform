@@ -290,14 +290,7 @@ Notification API
 
 ## Docker Run
 
-Default:
-```bash
-docker run -p 8080:8080 shuinvy/game-platform:0.0.1
-```
-
-Override settings:
-
-Sensitive configurations should be provided through environment variables or external configuration files in production environments.
+Run the backend container directly:
 
 ```bash
 docker run -d \
@@ -310,9 +303,87 @@ docker run -d \
 -e JWT_SECRET_KEY=<your-secret-key> \
 -e SWAGGER_SERVER_URL=<swagger-server-url> \
 -e SWAGGER_SERVER_DESCRIPTION=<swagger-server-description> \
-shuinvy/game-platform:0.0.6 \
+shuinvy/game-platform:<version> \
 --spring.mail.username=<your-email@gmail.com>
 ```
+
+Sensitive configurations should be provided through environment variables or external configuration files in production environments.
+
+## Docker Compose
+
+This project provides a Docker Compose configuration including:
+
+- Spring Boot backend service
+- MySQL database
+- Nginx reverse proxy
+- HTTPS configuration
+
+### Project Structure
+```
+game_platform/
+├── docker-compose.yaml
+├── database/
+│   └── game_platform.sql
+├── nginx/
+│   ├── gameplatform.conf
+│   └── cert/
+└── ...
+```
+
+### SSL Certificate Configuration
+
+The Nginx reverse proxy requires SSL certificate files:
+```
+nginx/
+└── cert/
+    ├── server.crt
+    └── server.key
+```
+Place your SSL certificate and private key under `nginx/cert/` before starting the containers.
+
+For production environments, use certificates issued by a trusted Certificate Authority (CA).
+
+For local development, self-signed certificates can be used.
+
+### Environment Configuration
+
+Create a `.env` file in the project root:
+
+```env
+IMAGE_TAG=0.0.6
+
+DB_URL=jdbc:mysql://mysql:3306/game_platform?serverTimezone=Asia/Taipei&characterEncoding=utf-8
+DB_USERNAME=root
+DB_PASSWORD=<your-password>
+
+EMAIL_PASSWORD=<your-email-password>
+EMAIL_USERNAME=<your-email@gmail.com>
+
+JWT_SECRET_KEY=<your-secret-key>
+
+SWAGGER_SERVER_URL=https://localhost
+SWAGGER_SERVER_DESCRIPTION=Local Docker Environment
+```
+
+### Start Services
+
+Before running Docker Compose:
+
+1. Create `.env` file
+2. Prepare SSL certificate files
+3. Ensure required ports are available
+4. Run:
+
+```
+docker compose up -d
+```
+For the first build or image update:
+```
+docker compose up -d --pull always
+```
+
+### Access
+https://localhost/swagger-ui/index.html
 
 ## Future Improvements
 - Backend Permission Authorization
@@ -329,15 +400,20 @@ shuinvy/game-platform:0.0.6 \
 - Reorganize the directory structure
   - Function based first, then MVC
   - Such as: member/controller/, member/service
-- Container Deployment Enhancement
-  - Docker Compose deployment
-  - Nginx reverse proxy configuration
-  - HTTPS deployment
 - CI/CD Pipeline
 - Unit Test / Integration Test
 - API Rate Limiting
 - Message Queue (RabbitMQ / Kafka)
 - Search / Pagination for List
+
+## Completed Deployment Features
+- Docker multi-stage build
+- Docker Compose deployment
+- MySQL container with persistent volume
+- Database initialization using SQL script
+- Nginx reverse proxy
+- HTTPS deployment
+- Environment-based configuration management
 
 ## Author
 Shuinvy
