@@ -303,13 +303,14 @@ Sensitive configurations should be provided through environment variables or ext
 docker run -d \
 --name game-platform \
 -p 8080:8080 \
+-e DB_URL=<db-url> \
 -e DB_USERNAME=<db-username> \
 -e DB_PASSWORD=<db-password> \
 -e EMAIL_PASSWORD=<your-email-password> \
 -e JWT_SECRET_KEY=<your-secret-key> \
 -e SWAGGER_SERVER_URL=<swagger-server-url> \
 -e SWAGGER_SERVER_DESCRIPTION=<swagger-server-description> \
-shuinvy/game-platform:0.0.4 \
+shuinvy/game-platform:0.0.6 \
 --spring.mail.username=<your-email@gmail.com>
 ```
 

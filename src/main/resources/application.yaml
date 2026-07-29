@@ -3,7 +3,7 @@ spring:
     name: game_platform
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/game_platform?serverTimezone=Asia/Taipei&characterEncoding=utf-8
+    url: ${DB_URL:jdbc:mysql://localhost:3306/game_platform?serverTimezone=Asia/Taipei&characterEncoding=utf-8}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   jackson:
